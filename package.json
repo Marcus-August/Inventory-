@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.3.2",
+    "pug": "^3.0.2"
+  },
+  "name": "test",
+  "version": "1.0.0",
+  "description": "knowledgebase app",
+  "main": "app.js ",
+  "scripts": {
+    "start": "Node app"
+  },
+  "author": "MarTrey",
+  "license": "ISC"
+}

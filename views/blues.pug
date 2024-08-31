@@ -1,0 +1,64 @@
+extends layout
+
+block content
+  h1= title
+  p This page displays the inventory for Blue Uniforms.
+
+  // Form to add new items for Blue Uniforms
+  form(action="/inventory/blues/add", method="post")
+    div
+      label(for="category") Category:
+      select(name="category", required)
+        option(value="blue pants") Blue Pants
+        option(value="blue tops") Blue Tops
+        option(value="blue jackets") Blue Jackets
+        option(value="blue belt") Blue Belt
+        option(value="blue cover") Blue Cover 
+        option(value="blue socks") Blue Socks 
+        option(value="blue shoes") Blue Shoes 
+
+    div
+      label(for="size") Size:
+      select(name="size", required)
+        option(value="xs") XS
+        option(value="s") S
+        option(value="m") M
+        option(value="l") L
+        option(value="xl") XL
+        
+    div
+      label(for="name") Name:
+      input(type="text", name="name", required)
+
+    div
+      label(for="quantity") Quantity:
+      input(type="number", name="quantity", required)
+
+    div
+      label(for="ranks") Ranks:
+      input(type="text", name="ranks", required)
+
+    div
+      label(for="ribbons") Ribbons:
+      input(type="number", name="ribbons", required)
+
+    button(type="submit") Add Item
+
+  // Display existing Blue Uniforms data
+  if bluesPersonnel && bluesPersonnel.length > 0
+  ul
+    each person in bluesPersonnel
+      li
+        span Name: #{person.name}
+        span | - Category: #{person.category}
+        span | - Size: #{person.size}
+        span | - Quantity: #{person.quantity}
+        span | - Ranks: #{person.ranks}
+        span | - Ribbons: #{person.ribbons}
+        form(action=`/inventory/blues/delete/${person._id}`, method="post", style="display:inline")
+          button(type="submit") Delete
+
+  // Display inventory images
+  img(src="/images/Female Short Sleeve Blues .png", alt="Female Short Sleeve Blues")
+  img(src="/images/Male Short Sleeve Blues .png", alt="Male Short Sleeve Blues")
+  img(src="/images/Lightweight Blues Jacket Male & Female .png", alt="Lightweight Blues Jacket Male & Female")

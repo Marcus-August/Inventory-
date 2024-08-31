@@ -1,0 +1,48 @@
+extends layout
+
+block content
+  .container
+    h1= title
+    p This page displays the inventory for Flight Suits.
+
+    // Form to add new items for Flight Suits
+  form(action="/flight/add", method="post")
+    div
+      label(for="category") Category:
+      select(name="category")
+        option(value="flight suit") flight suit
+        option(value="caps") caps
+    div
+      label(for="size") Size:
+      select(name="size")
+        option(value="xs") XS
+        option(value="s") S
+        option(value="m") M
+        option(value="l") L
+        option(value="xl") XL
+    div
+      label(for="name") Name:
+      input(type="text" name="name" required)
+    div
+      label(for="quantity") Quantity:
+      input(type="number" name="quantity" required)
+    button(type="submit") Add Item
+
+    // Display existing Flight Suits data
+  if flightSuitsPersonnel && flightSuitsPersonnel.length > 0
+    .row
+      ul
+        each person in flightSuitsPersonnel
+          li
+            | Name: #{person.name} | - Category: #{person.category} | - Size: #{person.size} | - Quantity: #{person.quantity}
+            form(action=`/inventory/flight-suits/delete/${person._id}`, method="post", style="display:inline")
+              button(type="submit") Delete
+  else
+    p No Flight Suits found.
+
+    script(src="/javascripts/deleteHandler.js")
+
+  // Display inventory image
+  block inventory-image
+    img(src="/images/Flight Caps.png" alt="Flight Caps")
+    img(src="/images/Flight Suit .png" alt="Flight Suit")

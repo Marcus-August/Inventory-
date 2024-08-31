@@ -1,0 +1,58 @@
+doctype html
+html
+  head
+    title= title
+    link(rel="stylesheet", href="/bower_components/bootstrap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/styles.css")
+    style(nonce=cspNonce).
+      .navbar-black {
+        background-color: #000;
+        color: #fff;
+      }
+      .navbar-black .navbar-nav > li > a {
+        color: #fff;
+      }
+      .navbar-black .navbar-nav > li > a:hover {
+        color: #ddd;
+      }
+      .navbar-black .navbar-brand {
+        color: #fff;
+      }
+      .navbar-black .navbar-brand:hover {
+        color: #ddd;
+      }
+      .navbar-black .navbar-nav {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+      }
+      .navbar-black .navbar-nav li {
+        list-style: none;
+        margin: 0 10px;
+      }
+
+  
+    nav.navbar.navbar-default.navbar-black
+      .container
+        a.navbar-brand(href='/') KnowledgeBase
+        ul.nav.navbar-nav
+          li
+            a(href='/') Home
+          li
+            a(href='/blues') Blue Uniforms
+          li
+            a(href='/inventory/ocp') OCP Uniforms
+          li
+            a(href='/flight-suits') Flight Suits
+          li
+            a(href='/pt-uniforms') PT Uniforms
+          li
+            a(href='/stock') Inventory
+          li
+            a(href="/personnel/query") Query Personnel
+
+    .container
+      block content
+
+    script(src="/bower_components/bootstrap/dist/js/bootstrap.min.js")
+    block scripts

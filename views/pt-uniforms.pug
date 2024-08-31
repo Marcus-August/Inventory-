@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  h1= title
+  p This page displays the inventory for PT Uniforms.
+
+  // Form to add new items for PT Uniforms
+  form(action="/pt-uniforms/add", method="post")
+    div
+       label(for="category") Category:
+    select(name="category" required)
+      option(value="pt shorts") Pt Shorts
+      option(value="pt shirt") Pt Shirt
+      option(value="pt pants") Pt Pants
+      option(value="pt jacket") Pt Jacket
+    div
+      label(for="size") Size:
+      select(name="size")
+        option(value="xs") XS
+        option(value="s") S
+        option(value="m") M
+        option(value="l") L
+        option(value="xl") XL
+    div
+      label(for="name") Name:
+      input(type="text" name="name" required)
+    div
+      label(for="quantity") Quantity:
+      input(type="number" name="quantity" required)
+    button(type="submit") Add Item
+
+  // Display existing PT Uniforms
+  if ptUniforms && ptUniforms.length > 0
+    ul
+        each uniform in ptUniforms
+            li
+                span Name: #{uniform.name}
+                span | - Category: #{uniform.category}
+                span | - Size: #{uniform.size}
+                span | - Quantity: #{uniform.quantity}
+                form(action=`/pt-uniforms/delete/${uniform._id}`, method="post", style="display: inline;")
+                    button(type="submit") Delete
+
+
+    // Display inventory image
+  <img src="/images/PT Gear.png" alt="PT Gear">

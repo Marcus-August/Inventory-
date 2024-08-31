@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title #{title}
+  body
+    h1 #{title}
+
+    //- Display existing results
+    if results && results.length
+      ul
+        each item in results
+          li
+            | #{item.name} - Quantity: #{item.quantity} - Category: #{item.category} - Size: #{item.size}
+            //- Delete button
+            form(action=`/personnel/delete/${item._id}`, method='POST', style='display:inline')
+              button(type='submit') Delete
+
+    //- Form to search personnel
+    form(action='/inventory/search', method='get')
+      input(type='text', name='name', placeholder='Enter name')
+      button(type='submit') Search

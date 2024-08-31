@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+    title= title
+  body
+    h1= title
+    ul
+      each person in personnel
+        li= `${person.name} - ${person.quantity} (${person.category})`
+    a(href='/query') Back to Query Form

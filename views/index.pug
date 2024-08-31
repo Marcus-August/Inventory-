@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to the ROTC Inventory Management System.
+  img(src='/images/Logo - AFROTC Det 432.png', alt='Inventory Image')
+
+
+block scripts
+  script.
+    document.addEventListener('DOMContentLoaded', function () {
+      const deleteForms = document.querySelectorAll('.delete-form');
+
+      deleteForms.forEach(form => {
+        form.addEventListener('submit', function (event) {
+          if (!confirm('Are you sure you want to delete this item?')) {
+            event.preventDefault();
+          }
+        });
+      });
+    });
+
+   
+ 

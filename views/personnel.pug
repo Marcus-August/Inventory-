@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    title Personnel List
+  body
+    h1 Personnel List
+    ul
+      if personnel && personnel.length
+        each person in personnel
+          li= `${person.name} - ${person.category}`
+      else
+        li No personnel found

@@ -1,0 +1,69 @@
+extends layout
+
+block content
+  h1= title
+  .row
+    .col-md-12
+      p This page displays the inventory for OCP Uniforms.
+
+  // Add form to add new personnel
+  .row
+    .col-md-6
+      form(action="/inventory/ocp/add", method="post")
+        div.form-group
+          label(for="category") Category:
+          select(name="category")
+            option(value="bottoms") Ocp Bottoms
+            option(value="ocp tops") Ocp Tops
+            option(value="ocp belt") Ocp Belt
+            option(value="ocp fleece jacket") Ocp Fleece Jacket
+            option(value="ocp undershirts") Ocp Undershirt
+            option(value="ocp socks") Ocp Socks
+            option(value="ocp cover") Ocp Cover 
+            option(value="ocp blouse") Ocp Blouse
+            option(value="ocp boots") Ocp Boots
+            option(value="ocp det patch") Ocp Det Patch 
+            option(value="ocp air force tape") Ocp Air Force Tape 
+
+        div.form-group
+          label(for="size") Size:
+          select(name="size" required)
+            option(value="xs") XS
+            option(value="s") S
+            option(value="m") M
+            option(value="l") L
+            option(value="xl") XL
+
+        div.form-group
+          label(for="name") Name:
+          input(type="text" name="name" required)
+
+        div.form-group
+          label(for="quantity") Quantity:
+          input(type="number" name="quantity" required)
+
+        div.form-group
+          label(for="ranks") Ranks:
+          input(type="text" name="ranks" required)
+
+        button(type="submit") Add Item
+
+  // Display existing OCP Uniforms data
+  if ocpPersonnel && ocpPersonnel.length > 0
+  ul
+    each person in ocpPersonnel
+      li
+        span Name: #{person.name}
+        span | - Category: #{person.category}
+        span | - Quantity: #{person.quantity}
+        span | - Size: #{person.size}
+        span | - Ranks: #{person.ranks}
+        form(action=`/inventory/ocp/delete/${person._id}`, method="post", style="display:inline")
+          button(type="submit") Delete
+
+
+  // Display inventory images
+  .row
+    .col-md-12
+      img(src="/images/OCP Caps.png" alt="OCP Caps")
+      img(src="/images/OCPConfiguration .png" alt="OCP Configuration")

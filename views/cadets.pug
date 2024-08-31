@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1= title
+  p This page displays the inventory for Cadets Names.
+
+  // Form to add new items for Cadets Names
+  form(action="/cadets/add", method="post")
+    div
+      label(for="name") Name:
+      input(type="text" name="name" required)
+    div
+      label(for="quantity") Quantity:
+      input(type="number" name="quantity" required)
+    div
+      button(type="submit") Add Item
+
+  // Display existing Cadets Names data
+  if cadetsPersonnel.length > 0
+    ul
+      each person in cadetsPersonnel
+        li
+          span= person.name + ' - ' + person.quantity
+          form(action=`/Inventory/delete/${person._id}`, method="post", style="display: inline;")
+            button(type="submit") Delete
+  else
+    p No Cadets Names data available
+

@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title OCP Uniforms 
+  body
+    h1 Blues Uniforms 
+    form(action="/add", method="post")
+      label(for="name") Name:
+      input(type="text", name="name", required)
+      label(for="quantity") Quantity:
+      input(type="number", name="quantity", required)
+      button(type="submit") Add Item
+    a(href="/") Back to Inventory

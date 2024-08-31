@@ -1,0 +1,144 @@
+extends layout
+
+block content
+  h1 Stock Room
+
+  //- Section for Blue Uniforms
+  h2 Blue Uniforms
+  if blueUniforms && blueUniforms.length
+    ul
+      each item in blueUniforms
+        li 
+          | #{item.name} - Quantity: #{item.quantity} - Category: #{item.category} - Size: #{item.size}
+          form(action=`/stock/blue-uniforms/delete/${item._id}` method="POST" style="display:inline")
+            button(type="submit") Delete
+          form(action=`/stock/blue-uniforms/update/${item._id}` method="POST" style="display:inline")
+            label(for="quantity") Quantity:
+            input(type="number" name="quantity" value=item.quantity required)
+            button(type="submit") Update
+  else
+    p No Blue Uniforms found.
+
+  form(action="/stock/add" method="POST")
+    input(type="hidden" name="category" value="blue uniforms")
+    label(for="name") Name:
+    input(type="text" name="name" required)
+    label(for="quantity") Quantity:
+    input(type="number" name="quantity" required)
+    label(for="size") Size:
+    select(name="size" required)
+      option(value="xs") XS
+      option(value="s") S
+      option(value="m") M
+      option(value="l") L
+      option(value="xl") XL
+      option(value="small") Small
+      option(value="medium") Medium
+      option(value="large") Large
+      option(value="extra large") Extra Large
+    button(type="submit") Add Blue Uniform
+
+  //- Section for OCP Uniforms
+  h2 OCP Uniforms
+  if ocpUniforms && ocpUniforms.length
+    ul
+      each item in ocpUniforms
+        li 
+          | #{item.name} - Quantity: #{item.quantity} - Category: #{item.category} - Size: #{item.size}
+          form(action=`/stock/ocp-uniforms/delete/${item._id}` method="POST" style="display:inline")
+            button(type="submit") Delete
+          form(action=`/stock/ocp-uniforms/update/${item._id}` method="POST" style="display:inline")
+            label(for="quantity") Quantity:
+            input(type="number" name="quantity" value=item.quantity required)
+            button(type="submit") Update
+  else
+    p No OCP Uniforms found.
+
+  form(action="/stock/add" method="POST")
+    input(type="hidden" name="category" value="ocp uniforms")
+    label(for="name") Name:
+    input(type="text" name="name" required)
+    label(for="quantity") Quantity:
+    input(type="number" name="quantity" required)
+    label(for="size") Size:
+    select(name="size" required)
+      option(value="xs") XS
+      option(value="s") S
+      option(value="m") M
+      option(value="l") L
+      option(value="xl") XL
+      option(value="small") Small
+      option(value="medium") Medium
+      option(value="large") Large
+      option(value="extra large") Extra Large
+    button(type="submit") Add OCP Uniform
+
+  //- Section for Flight Suit
+  h2 Flight Suit
+  if flightSuits && flightSuits.length
+    ul
+      each item in flightSuits
+        li 
+          | #{item.name} - Quantity: #{item.quantity} - Category: #{item.category} - Size: #{item.size}
+          form(action=`/stock/flight-suits/delete/${item._id}` method="POST" style="display:inline")
+            button(type="submit") Delete
+          form(action=`/stock/flight-suits/update/${item._id}` method="POST" style="display:inline")
+            label(for="quantity") Quantity:
+            input(type="number" name="quantity" value=item.quantity required)
+            button(type="submit") Update
+  else
+    p No Flight Suits found.
+
+  form(action="/stock/add" method="POST")
+    input(type="hidden" name="category" value="flight suits")
+    label(for="name") Name:
+    input(type="text" name="name" required)
+    label(for="quantity") Quantity:
+    input(type="number" name="quantity" required)
+    label(for="size") Size:
+    select(name="size" required)
+      option(value="xs") XS
+      option(value="s") S
+      option(value="m") M
+      option(value="l") L
+      option(value="xl") XL
+      option(value="small") Small
+      option(value="medium") Medium
+      option(value="large") Large
+      option(value="extra large") Extra Large
+    button(type="submit") Add Flight Suit
+
+  //- Section for PT Uniforms
+  h2 PT Uniforms
+  if ptUniforms && ptUniforms.length
+    ul
+      each item in ptUniforms
+        li 
+          | #{item.name} - Quantity: #{item.quantity} - Category: #{item.category} - Size: #{item.size}
+          form(action=`/stock/pt-uniforms/delete/${item._id}` method="POST" style="display:inline")
+            button(type="submit") Delete
+          form(action=`/stock/pt-uniforms/update/${item._id}` method="POST" style="display:inline")
+            label(for="quantity") Quantity:
+            input(type="number" name="quantity" value=item.quantity required)
+            button(type="submit") Update
+  else
+    p No PT Uniforms found.
+
+  form(action="/stock/add" method="POST")
+    input(type="hidden" name="category" value="pt uniforms")
+    label(for="name") Name:
+    input(type="text" name="name" required)
+    label(for="quantity") Quantity:
+    input(type="number" name="quantity" required)
+    label(for="size") Size:
+    select(name="size" required)
+      option(value="xs") XS
+      option(value="s") S
+      option(value="m") M
+      option(value="l") L
+      option(value="xl") XL
+      option(value="small") Small
+      option(value="medium") Medium
+      option(value="large") Large
+      option(value="extra large") Extra Large
+    button(type="submit") Add PT Uniform
