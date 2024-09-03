@@ -6,6 +6,8 @@ const inventoryRoutes = require('./routes/inventoryRoutes');
 const helmet = require('helmet');
 const crypto = require('crypto');
 const Stock = require('./models/stock'); // Import the new model
+const port = process.env.PORT || 3001;
+require('dotenv').config();
 
 // Initialize Express app
 const app = express();
@@ -32,20 +34,21 @@ app.use((req, res, next) => {
 const inventoryRouter = require('./routes/inventoryRoutes');
 app.use('/inventory', inventoryRouter);
 
-// Get MongoDB URI from environment variables
-const uri = process.env.MONGODB_URI;
+// Use process.env.MONGODB_URI to get the connection string from environment variables
+console.log('Environment Variables:', process.env);
 
-mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+// MongoDB URI from environment variable
+const dbURI = 'mongodb+srv://marcus177:NljSWVRregxXk6fo@cluster0.ii790.mongodb.net/ROTCinventory?retryWrites=true&w=majority';
+
+// Connect to MongoDB Atlas
+mongoose.connect(dbURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 })
-    .then(() => {
-        console.log('Connected to MongoDB Atlas');
-    })
-    .catch(err => {
-        console.error('Error connecting to MongoDB Atlas:', err);
-    });
-    
+.then(() => console.log('MongoDB connected successfully'))
+.catch(err => console.error('Error connecting to MongoDB:', err));
+
+
 // Load View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
