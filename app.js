@@ -32,14 +32,20 @@ app.use((req, res, next) => {
 const inventoryRouter = require('./routes/inventoryRoutes');
 app.use('/inventory', inventoryRouter);
 
-// Connect to MongoDB with updated options
-mongoose.connect('mongodb://localhost:27017/rotcInventory', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-    .then(() => console.log('Connected to MongoDB'))
-    .catch(err => console.error('Error connecting to MongoDB:', err));
+// Get MongoDB URI from environment variables
+const uri = process.env.MONGODB_URI;
 
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+    .then(() => {
+        console.log('Connected to MongoDB Atlas');
+    })
+    .catch(err => {
+        console.error('Error connecting to MongoDB Atlas:', err);
+    });
+    
 // Load View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
